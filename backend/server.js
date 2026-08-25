@@ -2,28 +2,37 @@
 // Dependency-free so it can run with just `node backend/server.js`.
 
 const http = require("http");
-const crypto = require("crypto");
+const store = require("./store");
 
 const PORT = process.env.PORT || 4000;
 
-function generateFakeKey() {
-  return `sk_live_${crypto.randomBytes(18).toString("hex")}`;
+function sendJson(res, status, body) {
+  res.writeHead(status, { "Content-Type": "application/json" });
+  res.end(JSON.stringify(body));
 }
 
 const server = http.createServer((req, res) => {
-  if (req.method === "POST" && req.url === "/api/api-keys") {
-    const body = {
-      id: `key_${crypto.randomBytes(6).toString("hex")}`,
-      key: generateFakeKey(),
-      createdAt: new Date().toISOString(),
-    };
-    res.writeHead(201, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(body));
+  const start = Date.now();
+  res.on("finish", () => {
+    console.log(`${req.method} ${req.url} ${res.statusCode} ${Date.now() - start}ms`);
+  });
+
+  if (req.url === "/api/api-keys") {
+    if (req.method === "GET") {
+      sendJson(res, 200, { keys: store.listKeys() });
+      return;
+    }
+
+    if (req.method === "POST") {
+      sendJson(res, 201, store.createKey());
+      return;
+    }
+
+    sendJson(res, 405, { error: "Method not allowed" });
     return;
   }
 
-  res.writeHead(404, { "Content-Type": "application/json" });
-  res.end(JSON.stringify({ error: "Not found" }));
+  sendJson(res, 404, { error: "Not found" });
 });
 
 server.listen(PORT, () => {
