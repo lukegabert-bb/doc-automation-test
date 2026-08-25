@@ -3,6 +3,9 @@
 
 const crypto = require("crypto");
 
+// Module-level array, not a shared cache: state lives only in this process's
+// memory, so it resets on restart and is never synced across instances if
+// this service is ever run with more than one replica.
 const keys = [];
 
 function generateFakeKey() {
