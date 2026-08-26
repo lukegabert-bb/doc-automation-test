@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications · Settings</title>
+  <link rel="stylesheet" href="notifications.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>Notifications</h1>
+      <p class="page-description">
+        Choose which emails you receive from Andable.
+      </p>
+    </header>
+
+    <section class="card">
+      <div class="toggle-row">
+        <label for="weekly-digest-toggle">Weekly digest</label>
+        <input type="checkbox" id="weekly-digest-toggle" checked />
+      </div>
+      <div class="toggle-row">
+        <label for="security-alerts-toggle">Security alerts</label>
+        <input type="checkbox" id="security-alerts-toggle" checked disabled />
+      </div>
+      <button id="save-notifications-btn" class="btn btn-primary" type="button">
+        Save preferences
+      </button>
+    </section>
+  </main>
+  <script src="notifications.js"></script>
+</body>
+</html>
