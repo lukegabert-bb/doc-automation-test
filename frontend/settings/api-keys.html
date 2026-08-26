@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Keys · Settings</title>
+  <link rel="stylesheet" href="api-keys.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>API Keys</h1>
+      <p class="page-description">
+        Create and manage API keys to let scripts, apps, and integrations act on your
+        behalf. Treat each key like a password — anyone who has it can make requests as
+        you, so only share it with tools you trust.
+      </p>
+    </header>
+
+    <section class="card">
+      <div class="card-header">
+        <h2>Your keys</h2>
+        <button id="create-key-btn" class="btn btn-primary" type="button">
+          Create new key
+        </button>
+      </div>
+
+      <ul id="key-list" class="key-list">
+        <!-- Rows are rendered by api-keys.js -->
+      </ul>
+
+      <p id="empty-state" class="empty-state" hidden>
+        You don't have any API keys yet. Create one to get started.
+      </p>
+    </section>
+
+    <div id="new-key-banner" class="new-key-banner" hidden>
+      <p>
+        <strong>Copy your new key now.</strong> For your security, we won't show the
+        full key again.
+      </p>
+      <code id="new-key-value"></code>
+      <button id="dismiss-banner-btn" class="btn btn-secondary" type="button">
+        Done
+      </button>
+    </div>
+  </main>
+
+  <script src="api-keys.js"></script>
+</body>
+</html>
