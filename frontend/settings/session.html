@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Session · Settings</title>
+  <link rel="stylesheet" href="session.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>Session</h1>
+      <p class="page-description">Control how long you stay signed in.</p>
+    </header>
+    <section class="card">
+      <div class="toggle-row">
+        <label for="session-timeout-select">Auto sign-out after</label>
+        <select id="session-timeout-select">
+          <option value="30">30 minutes</option>
+          <option value="60">1 hour</option>
+          <option value="480">8 hours</option>
+        </select>
+      </div>
+      <button id="save-session-btn" class="btn btn-primary" type="button">Save</button>
+    </section>
+  </main>
+  <script src="session.js"></script>
+</body>
+</html>
